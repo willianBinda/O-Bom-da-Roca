@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 5;
+    public int maxHealth = 10;
     private int currentHealth;
     private bool isTakingDamage = false;
     // private bool isDead = false;
@@ -26,26 +26,43 @@ public class PlayerHealth : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        // Debug.Log("ENTER");
-        
-        // if (collision.CompareTag("Enemy") && !isTakingDamage)
-        if (!isTakingDamage && collision.CompareTag("Enemy") && collision.IsTouching(GetComponent<Collider2D>()))
+        if (!isTakingDamage && collision.collider.CompareTag("Enemy"))
         {
             StartCoroutine(TakeDamageOverTime());
         }
     }
 
-    void OnTriggerExit2D(Collider2D collision)
+    void OnCollisionExit2D(Collision2D collision)
     {
-        // Debug.Log("EXIT");
-
-        if (collision.CompareTag("Enemy"))
+        if (collision.collider.CompareTag("Enemy"))
         {
             isTakingDamage = false;
         }
     }
+
+    // void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     // Debug.Log("ENTER");
+        
+    //     // if (collision.CompareTag("Enemy") && !isTakingDamage)
+    //     if (!isTakingDamage && collision.CompareTag("Enemy") && collision.IsTouching(GetComponent<Collider2D>()))
+    //     {
+    //         StartCoroutine(TakeDamageOverTime());
+    //     }
+    // }
+
+    // void OnTriggerExit2D(Collider2D collision)
+    // {
+    //     // Debug.Log("EXIT");
+
+    //     if (collision.CompareTag("Enemy"))
+    //     {
+    //         isTakingDamage = false;
+    //     }
+
+    // }
 
     IEnumerator TakeDamageOverTime()
     {
@@ -55,7 +72,7 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth--;
             healthUI.AtualizarVida(currentHealth);
-            Debug.Log("Vida: " + currentHealth);
+            // Debug.Log("Vida: " + currentHealth);
 
             if (currentHealth <= 0)
             {
@@ -83,6 +100,16 @@ public class PlayerHealth : MonoBehaviour
 
         // Desativar movimentação ou outras ações
         GetComponent<PlayerMoviment>().enabled = false;
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null) col.enabled = false;
+
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.velocity = Vector2.zero;
+            rb.isKinematic = true; // deixa de ser afetado pela física
+        }
+        
 
         StartCoroutine(RestartGame());
         // Se quiser remover o player da cena depois de um tempo:
