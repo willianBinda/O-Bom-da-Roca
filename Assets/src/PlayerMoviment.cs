@@ -10,11 +10,16 @@ public class PlayerMoviment : MonoBehaviour
     private Animator animator;
     private bool facingRight = true;
 
+    public Transform axeTransform;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         // axeAnimator = transform.Find("axe").GetComponent<Animator>();
         animator = GetComponent<Animator>();
+
+        if (axeTransform == null)
+            axeTransform = transform.Find("axe");
  
     }
 
@@ -53,10 +58,17 @@ public class PlayerMoviment : MonoBehaviour
     {
         facingRight = !facingRight;
 
+        // Inverte o player
         Vector3 scale = transform.localScale;
         scale.x *= -1f;
         transform.localScale = scale;
 
-        // Debug.Log("Flip executado. Novo scale: " + transform.localScale);
+        // Corrige a escala do machado para não inverter junto
+        if (axeTransform != null)
+        {
+            Vector3 axeScale = axeTransform.localScale;
+            axeScale.x *= -1f; // inverte de volta
+            axeTransform.localScale = axeScale;
+        }
     }
 }
