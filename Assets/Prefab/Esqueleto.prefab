@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8397823992378962975}
   - component: {fileID: 675233548859576358}
   - component: {fileID: 6924277510335531364}
-  - component: {fileID: 7409146357987715285}
   - component: {fileID: 6743957137690736836}
   m_Layer: 0
   m_Name: Esqueleto
@@ -75,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 50061671
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -73577953, guid: 2f041a3b27a78db2da5c128a0b01d014, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -97,7 +96,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8464095546890336105}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -113,8 +112,8 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &675233548859576358
 CapsuleCollider2D:
@@ -132,7 +131,7 @@ CapsuleCollider2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 1
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -145,11 +144,11 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00019743443, y: 0}
-  m_Size: {x: 0.13826214, y: 0.20000003}
+  m_Offset: {x: -0.004270971, y: 0.008143823}
+  m_Size: {x: 0.13156931, y: 0.20961912}
   m_Direction: 0
 --- !u!95 &6924277510335531364
 Animator:
@@ -172,7 +171,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7409146357987715285
+--- !u!114 &6743957137690736836
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,15 +184,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
---- !u!114 &6743957137690736836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8464095546890336105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2aeb433d2fc2f28dba15ad9f4e4000e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

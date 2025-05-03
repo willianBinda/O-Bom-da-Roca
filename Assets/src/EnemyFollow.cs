@@ -7,26 +7,33 @@ public class EnemyFollow : MonoBehaviour
     private Transform player;
     public float speed = 2f;
     private Animator animator;
-    private bool isChasing = false;
     private bool facingRight = true;
     private Rigidbody2D rb;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
+
+        // Ativa perseguição ao spawnar
+        // if (player != null)
+        // {
+        //     ChasePlayer();
+        // }
     }
 
     void Update()
     {
-        // Debug.Log("PLAYER: " + player);
-        if (isChasing && player != null)
+        if (player != null)
         {
             Vector2 direction = (player.position - transform.position).normalized;
 
             // Movimenta o inimigo
-            transform.position += (Vector3)direction * speed * Time.deltaTime;
+            // transform.position += (Vector3)direction * speed * Time.deltaTime;
+            Vector2 newPosition = rb.position + direction * speed * Time.deltaTime;
+            rb.MovePosition(newPosition);
 
             // Define a animação de Run com base na velocidade
             animator.SetFloat("Speed", direction.magnitude);
@@ -41,13 +48,8 @@ public class EnemyFollow : MonoBehaviour
                 Flip();
             }
         }
-        else
-        {
-            // Sem movimento = Idle
-            animator.SetFloat("Speed", 0f);
-        }
     }
-   
+
     void Flip()
     {
         facingRight = !facingRight;
@@ -56,21 +58,5 @@ public class EnemyFollow : MonoBehaviour
         scale.x *= -1f;
         transform.localScale = scale;
     }
-
-    void OnBecameVisible()
-    {
-        isChasing = true;
-    }
-
-    void OnBecameInvisible()
-    {
-        isChasing = false;
-    }
-
-    public void SetChase(bool chase)
-    {
-        isChasing = chase;
-    }
-
-   
 }
+
