@@ -71,9 +71,14 @@ public class AxeHit : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(1);
-                pontuacao++;
-                pontuacaoUI.AtualizarPontuacao(pontuacao);
+                
+                if (enemy.health <= 0)
+                {
+                    pontuacao++;
+                    pontuacaoUI.AtualizarPontuacao(pontuacao);
+                }
             }
+            
         }
     }
 }

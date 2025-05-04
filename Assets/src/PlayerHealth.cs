@@ -92,7 +92,13 @@ public class PlayerHealth : MonoBehaviour
         // isDead = true;
         animator.SetTrigger("Death");
 
-        Transform axe = transform.Find("axe");
+        Transform axe = transform.Find("AxeHolder/axe");
+        AxeAutoAttack axeAuto = FindObjectOfType<AxeAutoAttack>();
+
+        if (axeAuto != null)
+        {
+            axeAuto.enabled = false;
+        }
         if (axe != null)
         {
             axe.gameObject.SetActive(false); // ou Destroy(axe.gameObject);
