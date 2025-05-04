@@ -64,9 +64,16 @@ public class AxeHit : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
 
-            Destroy(collision.gameObject);
-            pontuacao++;
-            pontuacaoUI.AtualizarPontuacao(pontuacao);
+            // Destroy(collision.gameObject);
+            // pontuacao++;
+            // pontuacaoUI.AtualizarPontuacao(pontuacao);
+            EnemyFollow enemy = collision.GetComponent<EnemyFollow>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(1);
+                pontuacao++;
+                pontuacaoUI.AtualizarPontuacao(pontuacao);
+            }
         }
     }
 }

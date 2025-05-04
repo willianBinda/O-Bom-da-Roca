@@ -15,7 +15,7 @@ public class AxeAutoAttack : MonoBehaviour
     void Start()
     {
         if (axeTransform == null)
-            axeTransform = transform.Find("axe");
+            axeTransform = transform.Find("AxeHolder/axe");
 
         // axeHit = axeTransform.GetComponent<AxeHit>();
         timer = 0f;
@@ -42,7 +42,9 @@ public class AxeAutoAttack : MonoBehaviour
         while (rotated < totalRotation)
         {
             float rotationThisFrame = rotationSpeed * Time.deltaTime;
-            axeTransform.RotateAround(transform.position, Vector3.back, rotationThisFrame);
+            // axeTransform.RotateAround(transform.position, Vector3.back, rotationThisFrame);
+            axeTransform.RotateAround(axeTransform.parent.position, Vector3.back, rotationThisFrame);
+
             rotated += rotationThisFrame;
             yield return null;
         }

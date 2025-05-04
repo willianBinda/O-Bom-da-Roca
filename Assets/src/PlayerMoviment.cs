@@ -11,6 +11,7 @@ public class PlayerMoviment : MonoBehaviour
     private bool facingRight = true;
 
     public Transform axeTransform;
+    public Transform axeHolderTransform;
 
     void Start()
     {
@@ -18,9 +19,10 @@ public class PlayerMoviment : MonoBehaviour
         // axeAnimator = transform.Find("axe").GetComponent<Animator>();
         animator = GetComponent<Animator>();
 
-        if (axeTransform == null)
-            axeTransform = transform.Find("axe");
- 
+        // if (axeTransform == null)
+        //     axeTransform = transform.Find("axe");
+        if (axeHolderTransform == null)
+            axeHolderTransform = transform.Find("AxeHolder");
     }
 
     // Update is called once per frame
@@ -64,11 +66,17 @@ public class PlayerMoviment : MonoBehaviour
         transform.localScale = scale;
 
         // Corrige a escala do machado para não inverter junto
-        if (axeTransform != null)
+        // if (axeTransform != null)
+        // {
+        //     Vector3 axeScale = axeTransform.localScale;
+        //     axeScale.x *= -1f; // inverte de volta
+        //     axeTransform.localScale = axeScale;
+        // }
+        if (axeHolderTransform != null)
         {
-            Vector3 axeScale = axeTransform.localScale;
-            axeScale.x *= -1f; // inverte de volta
-            axeTransform.localScale = axeScale;
+            Vector3 holderScale = axeHolderTransform.localScale;
+            holderScale.x *= -1f;
+            axeHolderTransform.localScale = holderScale;
         }
     }
 }

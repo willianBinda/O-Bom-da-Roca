@@ -10,6 +10,8 @@ public class EnemyFollow : MonoBehaviour
     private bool facingRight = true;
     private Rigidbody2D rb;
 
+    public int health = 3;
+
 
     void Start()
     {
@@ -57,6 +59,22 @@ public class EnemyFollow : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x *= -1f;
         transform.localScale = scale;
+    }
+
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        // Aqui você pode tocar uma animação antes de destruir
+        Destroy(gameObject);
     }
 }
 
